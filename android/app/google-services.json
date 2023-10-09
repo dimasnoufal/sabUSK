@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262297954545",
+    "project_id": "absen-qrcode",
+    "storage_bucket": "absen-qrcode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262297954545:android:b4fb124e178d47a2b7e150",
+        "android_client_info": {
+          "package_name": "com.example.absen_qrcode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxZJ3iJ7LG_Mc0TaOMFa3nCRG0dbAYY24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
