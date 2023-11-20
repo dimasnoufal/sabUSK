@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_toastr/flutter_toastr.dart';
 // import 'package:belajar5/admin/homeAdmin.dart'; // admin home
 import 'package:absen_qrcode/ui/main/landing_page_activity.dart';
+import 'package:absen_qrcode/ui/admin/landing_page_activity.dart';
 import 'package:absen_qrcode/ui/autentikasi/register/register_activity.dart';
 
 class LoginActivity extends StatefulWidget {
@@ -14,7 +15,7 @@ class LoginActivity extends StatefulWidget {
 }
 
 class _LoginActivity extends State<LoginActivity> {
-  late String Semail, Spassword, level;
+  late String Semail, Spassword, Snama, level;
   final _formKey = GlobalKey<FormState>();
   String _textFieldValue = ''; // To store the text field value
   TextEditingController emailController = new TextEditingController();
@@ -22,7 +23,7 @@ class _LoginActivity extends State<LoginActivity> {
 
   void ProsesLogin() async {
     final response = await http
-        .post(Uri.parse("http://10.0.48.71/sabuskApi/login.php"), body: {
+        .post(Uri.parse("http://192.168.43.125/sabuskApi/login.php"), body: {
       "email": emailController.text,
       "password": passwordController.text,
     });
@@ -33,30 +34,40 @@ class _LoginActivity extends State<LoginActivity> {
       setState(() {
         FlutterToastr.show("Email Atau Password salah", context,
             duration: FlutterToastr.lengthShort,
-            position: FlutterToastr.center,
-            backgroundColor: Color.fromARGB(255, 247, 0, 0));
+            position: FlutterToastr.bottom,
+            backgroundColor: Color.fromARGB(255, 191, 180, 180));
       });
     } else {
       setState(() {
+        Snama = dataUser[0]["nama"];
         Semail = dataUser[0]["email"];
         Spassword = dataUser[0]["password"];
         level = dataUser[0]["level"];
       });
       if (level == "admin") {
-        FlutterToastr.show("Email Atau Password salah", context,
+        FlutterToastr.show("Selamat Datang $Snama", context,
             duration: FlutterToastr.lengthShort,
             position: FlutterToastr.bottom,
-            backgroundColor: Color.fromARGB(255, 0, 247, 12));
+            backgroundColor: Color.fromARGB(255, 191, 180, 180));
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setInt('_conditionValue', 3);
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => RegisterPageActivity()));
-      } else {
+            context, MaterialPageRoute(builder: (_) => MainApp()));
+      } else if (level == "user") {
+        FlutterToastr.show("Selamat Datang $Snama", context,
+            duration: FlutterToastr.lengthShort,
+            position: FlutterToastr.bottom,
+            backgroundColor: Color.fromARGB(255, 191, 180, 180));
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setInt('_conditionValue', 2);
         await AuthServices.login(emailController.text, passwordController.text);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => MyApp()));
+      } else {
+        FlutterToastr.show("Email Atau Password salah", context,
+            duration: FlutterToastr.lengthShort,
+            position: FlutterToastr.center,
+            backgroundColor: Color.fromARGB(255, 191, 180, 180));
       }
     }
   }

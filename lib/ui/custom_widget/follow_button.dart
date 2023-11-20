@@ -22,6 +22,7 @@ class _FollowButton extends State<FollowButton> {
         ),
         onPressed: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.clear();
           prefs.setInt('_conditionValue', 1);
           await AuthServices.logout();
           Navigator.push(

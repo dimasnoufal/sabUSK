@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:absen_qrcode/ui/introduction/introduction_activity.dart';
 import 'package:absen_qrcode/ui/autentikasi/login/login_activity.dart';
 import 'package:absen_qrcode/ui/main/landing_page_activity.dart';
-import 'package:absen_qrcode/ui/autentikasi/register/register_activity.dart';
+import 'package:absen_qrcode/ui/admin/landing_page_activity.dart';
 
 class SplashActivity extends StatefulWidget {
   _SplashActivity createState() => _SplashActivity();
@@ -47,7 +47,7 @@ class _SplashActivity extends State<SplashActivity> {
       var duration = const Duration(seconds: 3);
       return Timer(duration, () {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => RegisterPageActivity()),
+          MaterialPageRoute(builder: (context) => MainApp()),
         );
       });
     }

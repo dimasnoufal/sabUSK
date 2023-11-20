@@ -1,4 +1,5 @@
 import 'package:absen_qrcode/ui/main/home/main_screen_activity.dart';
+import 'package:absen_qrcode/ui/main/landing_page_activity.dart';
 import 'package:absen_qrcode/ui/main/scan/scan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -24,7 +25,7 @@ class ScanSuksesActivity extends StatelessWidget {
           //       Icons.arrow_back,
           //       color: Colors.blue,
           //     )),
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text(
             "Qr Scanner",
@@ -62,27 +63,30 @@ class ScanSuksesActivity extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                // SizedBox(
-                //   width: MediaQuery.of(context).size.width - 100,
-                //   height: 48,
-                //   child: ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.blue,
-                //     ),
-                //     onPressed: () {
-                //       Navigator.push(context,
-                //           MaterialPageRoute(builder: (_) => MainScreen()));
-                //     },
-                //     child: Text(
-                //       "Ok",
-                //       style: TextStyle(
-                //           color: Colors.white,
-                //           fontSize: 16,
-                //           fontWeight: FontWeight.bold,
-                //           letterSpacing: 1),
-                //     ),
-                //   ),
-                // )
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 100,
+                  height: 48,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context, MaterialPageRoute(builder: (_) => MyApp()));
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => MyApp()),
+                      );
+                    },
+                    child: Text(
+                      "Ok",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

@@ -11,8 +11,6 @@ class AppRouter extends $AppRouter {
           initial: true,
           children: [
             AutoRoute(page: HomeRoute.page),
-            AutoRoute(page: HomeDetailRoute.page),
-            AutoRoute(page: ScanRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
         ),

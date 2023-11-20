@@ -43,21 +43,22 @@ class IntroductionActivityState extends State<IntroductionActivity> {
       globalBackgroundColor: Colors.white,
       pages: [
         PageViewModel(
-          title: "Fitur 1",
-          body: "Penjelasan Fitur 1",
-          image: _buildImage('logo.png'),
+          title: "Scan Qr",
+          body: "QR untuk akses cepat informasi dengan mudah dan cepat.",
+          image: _buildImage('scan.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Fitur 2",
-          body: "Penjelasan Fitur 2",
-          image: _buildImage('logo.png'),
+          title: "Jadwal Kuliah",
+          body:
+              "Pantau jadwal kuliah Anda dengan fitur jadwal kuliah yang mudah diakses",
+          image: _buildImage('schedule.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Fitur 3",
-          body: "Penjelasan Fitur 3",
-          image: _buildImage('logo.png'),
+          title: "Cepat dan Mudah",
+          body: "Cepat dan Mudah untuk absen dan melihat jadwawl kuliah",
+          image: _buildImage('rocket.png'),
           decoration: pageDecoration,
         ),
       ],

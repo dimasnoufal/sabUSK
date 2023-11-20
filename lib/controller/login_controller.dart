@@ -8,8 +8,8 @@ class UserContoller {
   //in here i will create some methods like the following
 
   //let us create some constans
-  static const VIEW_URL = "http://10.0.48.71/sabuskApi/view.php";
-  static const CREATE_URL = "http://10.0.48.71/sabuskApi/create.php";
+  static const VIEW_URL = "http://192.168.43.125/sabuskApi/view.php";
+  static const CREATE_URL = "http://192.168.43.125/sabuskApi/create.php";
 
   //lemme make looping, of map or as you know associative array
   List<userModel> studentsFromJson(String jsonstring) {

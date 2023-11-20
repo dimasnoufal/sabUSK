@@ -41,7 +41,7 @@ class ProfileActivity extends StatelessWidget {
                     children: const <Widget>[
                       Icon(Icons.school),
                       SizedBox(height: 8.0),
-                      Text('Student')
+                      Text('lecture')
                     ],
                   ),
                   Column(
@@ -57,7 +57,7 @@ class ProfileActivity extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: const Text(
-                'Saya adalah mahasiswa',
+                'Saya adalah dosen',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),
