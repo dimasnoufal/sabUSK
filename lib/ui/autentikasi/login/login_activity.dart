@@ -50,7 +50,9 @@ class _LoginActivity extends State<LoginActivity> {
             position: FlutterToastr.bottom,
             backgroundColor: Color.fromARGB(255, 191, 180, 180));
         SharedPreferences prefs = await SharedPreferences.getInstance();
+        await AuthServices.login(emailController.text, passwordController.text);
         prefs.setInt('_conditionValue', 3);
+        prefs.setString('nama', Snama);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => MainApp()));
       } else if (level == "user") {
@@ -60,6 +62,7 @@ class _LoginActivity extends State<LoginActivity> {
             backgroundColor: Color.fromARGB(255, 191, 180, 180));
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setInt('_conditionValue', 2);
+        prefs.setString('nama', Snama);
         await AuthServices.login(emailController.text, passwordController.text);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => MyApp()));

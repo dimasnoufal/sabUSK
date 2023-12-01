@@ -1,3 +1,4 @@
+import 'package:absen_qrcode/ui/main/history/history_attendance_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:absen_qrcode/ui/main/schedule/list_matakuliah_activity.dart';
@@ -28,6 +29,18 @@ class _HomeActivityState extends State<HomeActivity> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Jadwal Kuliah'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.history),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HistoryAttedanceActivity(),
+                  ));
+            },
+          ),
+        ],
       ),
       body: StreamBuilder(
         stream: _items.snapshots(),

@@ -16,6 +16,8 @@ import 'package:absen_qrcode/ui/main/home/home_detail/home_detail_activity.dart'
     as _i4;
 import 'package:absen_qrcode/ui/main/home/home_activity.dart' as _i2;
 import 'package:absen_qrcode/ui/main/scan/scan_sukses_activity.dart' as _i7;
+import 'package:absen_qrcode/ui/main/history/history_attendance_activity.dart'
+    as _i8;
 
 abstract class $AppRouter extends _i6.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -50,6 +52,12 @@ abstract class $AppRouter extends _i6.RootStackRouter {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.ScanActivity(),
+      );
+    },
+    HistoryRoute.name: (routeData) {
+      return _i6.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.HistoryAttedanceActivity(),
       );
     },
     // ScanSuksesRoute.name: (routeData) {
@@ -139,6 +147,18 @@ class ScanSuksesRoute extends _i6.PageRouteInfo<void> {
         );
 
   static const String name = 'ScanSuksesRoute';
+
+  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+}
+
+class HistoryRoute extends _i6.PageRouteInfo<void> {
+  const HistoryRoute({List<_i6.PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }

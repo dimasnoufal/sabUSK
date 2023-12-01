@@ -11,6 +11,7 @@ class MainScreen extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         HomeRoute(),
+        // HistoryRoute(),
         ScanRoute(),
         ProfileRoute(),
       ],
@@ -28,6 +29,10 @@ class MainScreen extends StatelessWidget {
                 icon: Icon(Icons.home),
                 label: 'Home',
               ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.history),
+              //   label: 'History',
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.search),
                 label: 'Scan',

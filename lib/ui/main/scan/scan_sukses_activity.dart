@@ -1,15 +1,31 @@
 import 'package:absen_qrcode/ui/main/home/main_screen_activity.dart';
 import 'package:absen_qrcode/ui/main/landing_page_activity.dart';
 import 'package:absen_qrcode/ui/main/scan/scan_screen.dart';
+import 'package:absen_qrcode/ui/main/scan/scan_confirm_sukses_activity.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ScanSuksesActivity extends StatelessWidget {
+class ScanSuksesActivity extends StatefulWidget {
   final String code;
   final Function() closeScreen;
 
-  const ScanSuksesActivity(
+  ScanSuksesActivity(
       {super.key, required this.closeScreen, required this.code});
+
+  @override
+  State<ScanSuksesActivity> createState() => _ScanSuksesActivityState();
+}
+
+class _ScanSuksesActivityState extends State<ScanSuksesActivity> {
+  final CollectionReference _items =
+      FirebaseFirestore.instance.collection("absen");
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +49,11 @@ class ScanSuksesActivity extends StatelessWidget {
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.fromLTRB(12.0, 175.0, 12.0, 0),
             child: Column(
               children: [
                 QrImageView(
-                  data: code,
+                  data: widget.code,
                   version: QrVersions.auto,
                   size: 150,
                 ),
@@ -53,7 +69,7 @@ class ScanSuksesActivity extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  "$code",
+                  "${widget.code}",
                   style: TextStyle(
                       color: Colors.black87,
                       fontSize: 16,
@@ -70,11 +86,14 @@ class ScanSuksesActivity extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       // Navigator.push(
                       //     context, MaterialPageRoute(builder: (_) => MyApp()));
+                      upsertMatakuliahFirebase();
+
                       Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => MyApp()),
+                        MaterialPageRoute(
+                            builder: (context) => ScanConfirmSuksesActivity()),
                       );
                     },
                     child: Text(
@@ -91,5 +110,19 @@ class ScanSuksesActivity extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  Future<void> upsertMatakuliahFirebase() async {
+    //insert
+    await _items.add({
+      "keterangan": widget.code,
+      "tanggalWaktu": "${getRealTime()}",
+    });
+  }
+
+  String getRealTime() {
+    var now = DateTime.now();
+    var formatter = DateFormat('yyyy-MM-dd HH:mm:ss');
+    return formatter.format(now);
   }
 }

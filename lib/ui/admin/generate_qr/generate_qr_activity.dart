@@ -1,5 +1,7 @@
+import 'package:absen_qrcode/ui/admin/generate_qr/list_generate_qr_activity.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GenerateQrActivity extends StatefulWidget {
   const GenerateQrActivity({Key? key}) : super(key: key);
@@ -10,6 +12,14 @@ class GenerateQrActivity extends StatefulWidget {
 
 class GenerateQrActivityState extends State<GenerateQrActivity> {
   String data = "";
+  final CollectionReference _items =
+      FirebaseFirestore.instance.collection("qr");
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +28,18 @@ class GenerateQrActivityState extends State<GenerateQrActivity> {
         title: Text(
           "Generate Qr",
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.history),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListGenerateQrActivity(),
+                  ));
+            },
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,10 +81,23 @@ class GenerateQrActivityState extends State<GenerateQrActivity> {
           ),
           ElevatedButton(
             child: Text("Generate QR Code"),
-            onPressed: () {},
+            onPressed: () async {
+              upsertMatakuliahFirebase();
+
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListGenerateQrActivity(),
+                  ));
+            },
           ),
         ],
       ),
     );
+  }
+
+  Future<void> upsertMatakuliahFirebase() async {
+    //insert
+    await _items.add({"codeQr": data});
   }
 }

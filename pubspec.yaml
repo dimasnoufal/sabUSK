@@ -26,6 +26,9 @@ dependencies:
   cloud_firestore: ^4.4.5
   firebase_database: ^10.1.0
   url_launcher: ^6.1.12
+  pdf: ^3.10.6
+  open_file: ^3.3.2
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +40,4 @@ flutter:
   uses-material-design: true
   assets:
     - images/
+    - assets/fonts/opensans/OpenSans-Regular.ttf
